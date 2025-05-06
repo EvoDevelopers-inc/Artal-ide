@@ -7,6 +7,8 @@ use ide\settings\SettingsContext;
 use ide\settings\ui\AbstractSettingsItem;
 use ide\ui\elements\DNButton;
 use ide\ui\elements\DNLabel;
+use ide\ui\elements\DNListView;
+use ide\ui\elements\DNSplitPane;
 use php\gui\layout\UXHBox;
 use php\gui\layout\UXVBox;
 use php\gui\UXLabel;
@@ -36,8 +38,8 @@ class PluginsSettingsItem extends AbstractSettingsItem {
      * @throws \Exception
      */
     public function makeUi(SettingsContext $context): UXNode {
-        $list = new UXListView();
-        $mainBox = new UXSplitPane();
+        $list = new DNListView();
+        $mainBox = new DNSplitPane();
         $extensions = Ide::get()->getExtensions();
 
         $mainBox->items->add($list);
@@ -110,6 +112,7 @@ class PluginsSettingsItem extends AbstractSettingsItem {
      * @return bool
      */
     public function canSave(SettingsContext $context, UXNode $ui): bool {
+
         // ignore
     }
 }
