@@ -72,9 +72,7 @@ class DefaultGuiProjectTemplate extends AbstractProjectTemplate
             $project->register(new RunBuildProjectBehaviour(), false);
         }
 
-        if (!$project->hasBehaviour(ShareProjectBehaviour::class)) {
-            $project->register(new ShareProjectBehaviour(), false);
-        }
+
 
         if (!$project->hasBehaviour(BackupProjectBehaviour::class)) {
             $project->register(new BackupProjectBehaviour(), false);

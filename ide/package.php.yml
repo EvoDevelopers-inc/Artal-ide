@@ -1,5 +1,5 @@
-name: develnext-ide
-version: 17.0.0+dev
+name: ArtAl-ide
+version: 2025.05+dev
 type: project
 description: IDE for PHP/JPHP.
 plugins:

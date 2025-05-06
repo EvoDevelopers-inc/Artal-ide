@@ -387,6 +387,10 @@ class JPPMControlPane extends AbstractProjectControlPane
         $packages = $this->packageTpl->getDeps();
         $thread = new Thread(function() use ($packages){
             /** @var ServiceResponse $query */
+
+
+            // Реализовать локальную скачку репы!!!!
+            return;
             $query = Ide::service()->ide()->executeGet('repo/list/last?limit=31&offset=' . $this->offset);
             if($query->isSuccess()){
                 $data = $query->result();

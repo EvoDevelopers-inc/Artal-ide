@@ -3,6 +3,7 @@ namespace ide\project\behaviours;
 
 use ide\Logger;
 use ide\project\AbstractProjectBehaviour;
+use ide\project\Project;
 use ide\project\ProjectModule;
 use ide\utils\FileUtils;
 use php\lib\fs;
@@ -16,6 +17,11 @@ class JavaPlatformBehaviour extends AbstractProjectBehaviour
     {
         $this->project->registerModuleTypeHandler('jarfile', [$this, 'jarFileModuleTypeHandler']);
         $this->project->registerModuleTypeHandler('jardir', [$this, 'jarDirModuleTypeHandler']);
+    }
+
+    public function __construct(Project $project = null)
+    {
+
     }
 
     public function jarFileModuleTypeHandler(ProjectModule $module, $one, $remove, $owner, $suffix = '')

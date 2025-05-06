@@ -50,6 +50,16 @@ class PhpProjectBehaviour extends AbstractProjectBehaviour
         'package' => 'php.use.type.package.option::Имена пакетов (use package)'
     ];
 
+
+    /**
+     * PhpProjectBehaviour constructor.
+     * @param Project|null $project
+     */
+    public function __construct(Project $project = null)
+    {
+
+    }
+
     /**
      * @var array
      */
