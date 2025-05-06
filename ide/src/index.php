@@ -99,14 +99,14 @@ function ico($name)
         [$name, $size, $color] = str::split($name, ",");
 
         $size = $size ?: "18px";
-
+/*
         switch ($type) {
             case "fa":
                 return new \php\gui\icons\UXFontAwesomeIcon($name, $size, $color);
             case "525":
-                return new \php\gui\icons\UXIcons525Icon($name, $size, $color);
+                return new \php\gui\icons\UXFontAwesomeIcon($name, $size, $color);
         }
-
+*/
         return null;
     } else {
         if (str::startsWith($name, "icons/")) {

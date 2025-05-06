@@ -53,6 +53,10 @@ class BackupProjectBehaviour extends AbstractProjectBehaviour
     /**
      * ...
      */
+    public function __construct(Project $project = null)
+    {
+
+    }
     public function inject()
     {
         $this->project->on('open', [$this, 'doOpen']);

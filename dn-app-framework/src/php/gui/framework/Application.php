@@ -516,11 +516,11 @@ class Application
     public function hideSplash()
     {
         if ($splash = UXApplication::getSplash()) {
-            $splash->hide();
+           // $splash->hide();
         }
 
         if ($this->splash) {
-            $this->splash->hide();
+           // $this->splash->hide();
         }
     }
 

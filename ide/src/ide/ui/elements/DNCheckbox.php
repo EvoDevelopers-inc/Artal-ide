@@ -23,6 +23,7 @@ class DNCheckbox extends UXCheckbox {
      */
     public static function applyIDETheme(UXCheckbox $button) {
         /** @var IDETheme $currentTheme */
+        $button->classes->add('dn-checkbox');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($button, $currentTheme->getCSSStyle()->getButtonCSS());
     }

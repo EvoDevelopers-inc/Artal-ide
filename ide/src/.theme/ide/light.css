@@ -1,277 +1,580 @@
+* {
+    -fx-prompt-text-fill: #9E9E9E;
+}
 
 .root {
-    /***************************************************************************
-     *                                                                         *
-     * The main color palette from which the rest of the colors are derived.   *
-     *                                                                         *
-     **************************************************************************/
+    /* Основные цвета */
+    -fx-primary: #1A73E8;         /* Google синий - основной акцент */
+    -fx-primary-dark: #0D47A1;    /* Темный акцент для выбранного состояния */
+    -fx-primary-light: #64B5F6;   /* Светлый акцент для hover состояний */
 
-    /* A light grey that is the base color for objects.  Instead of using
-     * -fx-base directly, the sections in this file will typically use -fx-color.
-     */
-    -fx-base: #ececec;
+    
+    /* Семантические цвета */
+    -fx-green: #4CAF50;   /* Успех */
+    -fx-dark-green: #2E7D32;
+    -fx-blue: #1A73E8;    /* Информация */
+    -fx-dark-blue: #0D47A1;
+    -fx-red: #F44336;     /* Ошибка */
+    -fx-dark-red: #C62828;
+    -fx-yellow: #FFEB3B;  /* Предупреждение */
+    -fx-dark-yellow: #F9A825;
 
-    /* A very light grey used for the background of windows.  See also
-     * -fx-text-background-color, which should be used as the -fx-text-fill
-     * value for text painted on top of backgrounds colored with -fx-background.
-     */
-
-    /* Used for the inside of text boxes, password boxes, lists, trees, and
-     * tables.  See also -fx-text-inner-color, which should be used as the
-     * -fx-text-fill value for text painted on top of backgrounds colored
-     * with -fx-control-inner-background.
-     */
-    -fx-control-inner-background: derive(-fx-base,80%);
-    /* Version of -fx-control-inner-background for alternative rows */
-    -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
-
-    /* One of these colors will be chosen based upon a ladder calculation
-     * that uses the brightness of a background color.  Instead of using these
-     * colors directly as -fx-text-fill values, the sections in this file should
-     * use a derived color to match the background in use.  See also:
-     *
-     * -fx-text-base-color for text on top of -fx-base, -fx-color, and -fx-body-color
-     * -fx-text-background-color for text on top of -fx-background
-     * -fx-text-inner-color for text on top of -fx-control-inner-color
-     * -fx-selection-bar-text for text on top of -fx-selection-bar
-     */
-    -fx-dark-text-color: black;
-    -fx-mid-text-color: #333;
-    -fx-light-text-color: white;
-
-    /* A bright blue for highlighting/accenting objects.  For example: selected
-     * text; selected items in menus, lists, trees, and tables; progress bars */
-    -fx-accent: #0093ff;
-
-    /* Default buttons color, this is similar to accent but more subtle */
-    -fx-default-button: #1c67b1;
-
-    /* A bright blue for the focus indicator of objects. Typically used as the
-     * first color in -fx-background-color for the "focused" pseudo-class. Also
-     * typically used with insets of -1.4 to provide a glowing effect.
-     */
-    -fx-focus-color: #2788d3;
-    -fx-faint-focus-color: #039ED322;
-
-    /* The color that is used in styling controls. The default value is based
-     * on -fx-base, but is changed by pseudoclasses to change the base color.
-     * For example, the "hover" pseudoclass will typically set -fx-color to
-     * -fx-hover-base (see below) and the "armed" pseudoclass will typically
-     * set -fx-color to -fx-pressed-base.
-     */
-    -fx-color: -fx-base;
-
-
-
-    -fx-background: #f3f3f3;
-    -fx-body-color: derive(-fx-color, 5%);
 }
 
 /**
- * Цвет у панелей со списком форм, модулей, проектов
+ * Стили меню
  */
-.flow-list-view{
-    -fx-background-color: -fx-background;
+ .menu-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 0 0 1px 0;
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
-.combo-box > .list-cell:hover {
-    -fx-background-color: gray;
+.menu * {
+    -fx-background-color: transparent; /* Делаем прозрачным фон элементов внутри */
 }
 
-.nav .nav-item.selected {
-    -fx-font-weight: bold;
-    -fx-background-color: -fx-background;
-    -fx-border-color: silver;
-    -fx-border-radius: 3px;
+/* Эффект при наведении мыши - затемнение с сохранением фона */
+.menu:hover {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+    -fx-background-color: rgba(230, 230, 230, 0.7); /* Полупрозрачное затемнение */
 }
 
-.nav .nav-hint-text {
-    -fx-text-fill: gray;
-    -fx-padding:  0 0 0 10;
-}
-
-.nav .nav-hint-total {
-    -fx-text-fill: gray;
-    -fx-font-weight: bold;
-}
-
-/**
- * Вкладка проект - фрейм "синхронизация с develnext"
- */
-#syncPane, #need-auth-pane, #need-auth-pane > * {
-    -fx-background-color: -fx-background;
-}
-
-/**
- * Визуальный конструктор элементов
- */
-#designer-layout {
-    -fx-border-color: silver;
-    -fx-background-color: #F7F7F7;
-}
-
-/**
- * Списки
- */
-.list-view .list-cell:filled:selected:focused, .list-view .list-cell:filled:selected {
-    -fx-background-color: silver;
-}
-
-.list-view.dn-simple-list:filled:selected:focused, .list-view.dn-simple-list .list-cell:filled:selected {
-    -fx-background-color: -fx-background;
-}
-
-.list-view.dn-simple-list .list-cell:odd {
-    -fx-cell-hover-color: -fx-background;
-    -fx-background-color: -fx-background;
-}
-
-/**
- * ПКМ меню
- */
+/* Для отображения выпадающих меню с фоном */
 .context-menu {
-    -fx-background-color: #f6f6f6;
-    -fx-border-color: silver;
+    -fx-background-color: transparent; /* Полупрозрачный фон для выпадающих меню */
+    -fx-background-radius: 4px;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+/* Для пунктов меню при наведении */
+.menu-item:focused {
+    -fx-background-color: rgba(26, 115, 232, 0.7); /* Полупрозрачный цвет подсветки */
+}
+
+/* Чтобы текст был читаем на любом фоне */
+.menu .label, .menu-item .label {
+    -fx-text-fill: -fx-font-color;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 2, 0, 0, 1); /* Тень для текста */
+}
+
+.context-menu {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
 }
 
 /**
- * Preloader
+ * Стили кнопок
+ */
+.dn-button {
+    -fx-background-color: #F3F3F3;
+    -fx-text-fill: -fx-font-color;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-padding: 5px 10px;
+}
+
+.dn-button:hover {
+    -fx-background-color: #F8F8F8;
+    -fx-border-color: #CCCCCC;
+}
+
+.dn-button:pressed {
+    -fx-background-color: #E5E5E5;
+    -fx-border-color: -fx-primary;
+}
+
+.dn-button:default {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+.dn-button:default:hover {
+    -fx-background-color: derive(-fx-primary, 10%);
+}
+
+.dn-button:default:pressed {
+    -fx-background-color: derive(-fx-primary, -10%);
+}
+
+.dn-button.flat-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-font-color;
+}
+
+.dn-button.flat-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-text-fill: -fx-primary;
+}
+
+/**
+ * Стили табов
+ */
+.dn-tab-pane .tab-header-area {
+    -fx-padding: 3px;
+}
+
+.dn-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #F3F3F3;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #DDDDDD;
+}
+
+.dn-tab-pane .tab,
+.dn-file-tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #F8F8F8;
+    -fx-background-radius: 4px 4px 0 0;
+    -fx-border-radius: 4px 4px 0 0;
+    -fx-border-color: #DDDDDD #DDDDDD transparent #DDDDDD;
+    -fx-padding: 5px 10px;
+}
+
+.dn-tab-pane .tab:hover,
+.dn-file-tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: #FCFCFC;
+}
+
+.dn-tab-pane .tab:selected,
+.dn-file-tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-primary;
+    -fx-background-radius: 4px 4px 0 0;
+}
+
+.dn-tab-pane .tab:selected > .tab-container *,
+.dn-file-tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: white;
+}
+
+.dn-tab-pane > .tab-content-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 0 4px 4px;
+}
+
+/**
+ * Списки и коллекции
+ */
+.flow-list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+}
+
+.flow-list-view .list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: -fx-font-color;
+    -fx-padding: 5px 8px;
+}
+
+.flow-list-view .list-cell:odd {
+    -fx-background-color: #FCFCFC;
+}
+
+.flow-list-view .list-cell.selected {
+    -fx-background-color: #CCE6FE;
+    -fx-text-fill: -fx-font-color;
+}
+
+.flow-list-view .list-cell.hovered {
+    -fx-border-color: -fx-primary-light;
+    -fx-background-color: rgba(26, 115, 232, 0.05);
+}
+
+.flow-list-view .list-cell.dragged {
+    -fx-border-color: -fx-primary;
+    -fx-border-style: dashed;
+    -fx-border-width: 1px;
+}
+
+/**
+ * Текстовые поля
+ */
+.dn-textfield, .dn-textarea {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: -fx-font-color;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.dn-textfield:focused, .dn-textarea:focused {
+    -fx-border-color: -fx-primary;
+    -fx-background-insets: 0;
+}
+
+.dn-textarea .content {
+    -fx-background-color: #FFFFFF;
+}
+
+/**
+ * Скроллбары
+ */
+.scroll-bar {
+    -fx-background-color: #F8F8F8;
+    -fx-pref-width: 8px;
+    -fx-pref-height: 8px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #CCCCCC;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #BBBBBB;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: -fx-primary;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
+/**
+ * Preloader и состояния загрузки
  */
 #x-preloader {
-    -fx-background-color: -fx-background;
+    -fx-background-color: #FFFFFF;
 }
 
-
-/* Цвет у кнопки "вход в аккаунт" */
-.flat-button { -fx-background-color: #f1f1f1; }
-.flat-button:hover { -fx-background-color: #e6e6e6; }
-
-/**
- * Активный там у MainForm
- */
-.dn-file-tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
-    -fx-text-fill: #16467b;
-}
-
-.dn-list-item { -fx-border-color: silver; -fx-cursor: hand; -fx-background-color: white; }
-.dn-list-item:hover { -fx-border-color: red; }
-
-.dn-list-menu-description { -fx-text-fill: gray; }
-
-.dn-list-menu-count { -fx-background-color: gray; -fx-text-fill: white; }
-
-.flow-list-view { -fx-background-color: white;   -fx-border-color: silver; }
-.flow-list-view .list-cell.selected { -fx-background-color: #dcdcdc; }
-
-.flow-list-view .list-cell.hovered { -fx-border-color: gray; }
-
-.flow-list-view .list-cell.dragged { -fx-border-color: red;  }
-
-.dn-list-hint { -fx-text-fill: silver; }
-
-.dn-simple-toggle-button:hover { -fx-background-color: #cce6fe; -fx-border-color: #5a71a7; }
-.dn-simple-toggle-button:selected { -fx-background-color: silver; -fx-border-color: gray; }
-
-.dn-simple-toggle-button, .dn-simple-button { -fx-background-color: -fx-background; -fx-border-color: silver; -fx-border-width: 1px; }
-
-
-.dn-autocomplete {
-    -fx-border-color: #dddddd;
-}
-
-.dn-autocomplete-description {
-    -fx-background-color: #feffc5;
-}
-
-.dn-autocomplete-description .description {
-    -fx-text-fill: gray;
-}
-
-
-.dn-tooltip-error {
-    -fx-background-color: #b71c0f;
-    -fx-text-fill: #ffece0;
-}
-
-.dn-autocomplete-description .content .label {
-    -fx-text-fill: gray;
-}
-
-.point-marker {
-    -fx-border-color: red;
-}
-
-.tab-pane.dn-style .tab-content-area {
-    -fx-border-color: silver;
-}
-
-
-/**
- * Справка
- */
-
-.dn-web {
-    -fx-background-color: -fx-background;
-}
-
-.doc-entry {
-    -fx-background-color: #fafafa;
-    -fx-border-color: silver;
-}
-
-
-.doc-entry .description {
-    -fx-text-fill: gray;
-}
-
-.media-view {
-    -fx-border-color: #2b3436;
-    -fx-background-color: #1c67b1;
+#syncPane, #need-auth-pane, #need-auth-pane > * {
+    -fx-background-color: #FFFFFF;
 }
 
 /**
- * Табы в MainForm
+ * Визуальный редактор
  */
-.dn-file-tab-pane > .tab-header-area > .headers-region > .tab:selected {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, white;
-    -fx-background-insets: 0 1 1 0, 1 2 0 1, 2 3 0 2;
+#designer-layout {
+    -fx-border-color: #DDDDDD;
+    -fx-background-color: #FCFCFC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
 }
 
-.dn-file-tab-pane:top > .tab-header-area > .tab-header-background {
-    -fx-border-color: white, #d6d6d6;
-}
-
-#form-named-block{
-    -fx-border-color: gray;
-    -fx-background-color: #DCDCDC;
-}
-
-
-#form-named-block .title{
-    cursor: hand;
-    -fx-border-radius: 2px;
-    -fx-background-color: #DCDCDC;
-    -fx-border-color: silver;
-    -fx-text-fill: black;
-}
-
-
-.property-editor {
-    -fx-background-color: silver;
-}
-
-.modules-editor {
-    -fx-control-inner-background: #fffe85;
-}
-
-/**
- * Мозаичный фон при редактировании форм
- */
 .scroll-pane.dn-mosaic-background > .viewport {
-    -fx-background-image: url("/.data/img/transparent-2.png");
+    -fx-background-color: #FCFCFC;
+    -fx-background-image: url("/.data/img/transparent-light.png");
     -fx-background-repeat: repeat;
 }
 
+/**
+ * Редактор исходного кода
+ */
+.syntax-text-area {
+    -fx-background-color: #FFFFFF;
+}
+
+.syntax-text-area .paragraph-box:has-caret {
+    -fx-background-color: #F7F7F7;
+}
+
+.syntax-text-area .caret {
+    -fx-stroke: -fx-primary;
+}
+
+.syntax-text-area .text.keyword {
+    -fx-fill: #0033B3;
+    -fx-font-weight: bold;
+}
+
+.syntax-text-area .text.string {
+    -fx-fill: #008000;
+}
+
+.syntax-text-area .text.number {
+    -fx-fill: #1750EB;
+}
+
+.syntax-text-area .text.comment {
+    -fx-fill: #8C8C8C;
+    -fx-font-style: italic;
+}
+
+/**
+ * Модули редактора
+ */
+.modules-editor {
+    -fx-control-inner-background: #FAFAFA;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+}
+
+.property-group, .property-group * {
+    -fx-text-fill: -fx-font-color;
+}
+
 .settings-group {
-    -fx-background-color: #eeeeee;
+    -fx-background-color: #F8F8F8;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+/**
+ * Всплывающие подсказки
+ */
+.tooltip {
+    -fx-background-color: #FCFCFC;
+    -fx-text-fill: -fx-font-color;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.dn-tooltip-error {
+    -fx-background-color: -fx-red;
+    -fx-text-fill: white;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+/**
+ * Стилизация для диалоговых окон
+ */
+.dialog-pane {
+    -fx-background-color: #FFFFFF;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #F8F8F8;
+}
+
+.dialog-pane .dn-button-bar .dn-button {
+    -fx-background-color: #F3F3F3;
+    -fx-text-fill: -fx-font-color;
+}
+
+.dialog-pane .dn-button-bar .dn-button:hover {
+    -fx-background-color: #F8F8F8;
+}
+
+/**
+ * Split панели
+ */
+.split-pane {
+    -fx-background-color: transparent;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: #DDDDDD;
+    -fx-padding: 0 1px 0 1px;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: #DDDDDD;
+    -fx-padding: 0 1px 0 1px;
+}
+
+.split-pane:vertical > .split-pane-divider {
+    -fx-background-color: #DDDDDD;
+    -fx-padding: 1px 0 1px 0;
+}
+
+/**
+ * стиль для аккаунта
+ */
+.account-menu {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #DDDDDD;
+}
+
+.account-menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 8px;
+}
+
+.account-menu-item:hover {
+    -fx-background-color: -fx-hover;
+    -fx-background-radius: 4px;
+}
+
+/**
+ * Дополнительные стили для DN
+ */
+.dn-tab-pane.dn-style {
+    -fx-tab-min-width: 120px;
+}
+
+.dn-tab-pane.dn-style .tab-header-area .tab-header-background {
+    -fx-background-color: #F3F3F3;
+}
+
+.dn-tab-pane.dn-style .tab-content-area {
+    -fx-border-width: 1px;
+    -fx-border-color: #DDDDDD;
+}
+
+.list-view.hide-hor-scroll .scroll-bar:horizontal .increment-arrow,
+.list-view.hide-hor-scroll .scroll-bar:horizontal .decrement-arrow,
+.list-view.hide-hor-scroll .scroll-bar:horizontal .increment-button,
+.list-view.hide-hor-scroll .scroll-bar:horizontal .decrement-button {
+    -fx-padding: 0;
+}
+
+.scroll-pane.dn-web > .viewport {
+    -fx-background-color: transparent;
+}
+
+.doc-entry {
+    -fx-padding: 5px 10px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #DDDDDD;
+    -fx-background-color: #FCFCFC;
+}
+
+.doc-entry .description {
+    -fx-font-size: 12px;
+    -fx-font-style: italic !important;
+    -fx-text-fill: #767676;
+}
+
+.media-view {
+    -fx-border-style: dashed;
+    -fx-border-color: #BBBBBB;
+}
+
+/**
+ * Дополнительные стили для компонентов DN
+ */
+.dn-checkbox {
+    -fx-text-fill: -fx-font-color;
+}
+
+.dn-combobox {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.dn-combobox:focused {
+    -fx-border-color: -fx-primary;
+}
+
+.dn-togglebutton {
+    -fx-background-color: #F3F3F3;
+    -fx-text-fill: -fx-font-color;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.dn-togglebutton:selected {
+    -fx-background-color: #CCE6FE;
+    -fx-border-color: #64B5F6;
+}
+
+.dn-treeview {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+}
+
+.dn-listview {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+}
+
+.dn-flowpane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 4px;
+}
+
+.dn-titledpane > .title {
+    -fx-background-color: #F3F3F3;
+    -fx-border-color: #DDDDDD;
+}
+
+.dn-titledpane > .content {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+}
+
+
+/* Стили для splash screen */
+/* Add these to both light.css and dark.css if not already present */
+
+/* Splash screen styles */
+.splash-background {
+    -fx-background-color: black;
+}
+
+.splash-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(26, 115, 232, 0.8), 8, 0, 0, 0);
+}
+
+.splash-version {
+    -fx-text-fill: #BBBBBB;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 2, 0, 0, 1);
+}
+
+.splash-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 2, 0, 0, 1);
+}
+
+.splash-copyright {
+    -fx-text-fill: #888888;
+    -fx-font-style: italic;
+}
+
+.splash-progress {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 2px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.splash-progress > .bar {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 2px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(26, 115, 232, 0.5), 10, 0, 0, 0);
+}
+
+.splash-progress > .track {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 2px;
+    -fx-background-insets: 0;
+}
+
+.splash-logo {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 10, 0, 0, 0);
 }

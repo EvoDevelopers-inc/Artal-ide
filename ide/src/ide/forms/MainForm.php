@@ -1,11 +1,13 @@
 <?php
 namespace ide\forms;
 
+use ide\action\types\UiLaterActionType;
 use ide\commands\ChangeThemeCommand;
 use ide\commands\theme\CSSStyle;
 use ide\commands\theme\IDETheme;
 use ide\Ide;
 use ide\IdeConfigurable;
+use ide\IdeConfiguration;
 use ide\IdeException;
 use ide\Logger;
 use ide\ui\elements\DNAnchorPane;
@@ -51,7 +53,7 @@ use php\lib\str;
  */
 class MainForm extends AbstractIdeForm
 {
-    use IdeConfigurable;
+
 
     /**
      * @var UXMenuBar
@@ -70,6 +72,9 @@ class MainForm extends AbstractIdeForm
     {
         parent::__construct();
 
+        Ide::setStatusSplash("Start MainForm ...");   
+        Ide::setProgressSplash(100);
+
         $this->bottom = $this->bottomSpoiler;
 
         DNAnchorPane::applyIDETheme($this->contentVBox);
@@ -84,8 +89,12 @@ class MainForm extends AbstractIdeForm
         if (!$this->mainMenu) {
             throw new IdeException("Cannot find main menu on main form");
         }
+
+    
+        
     }
 
+    
     /**
      * @param $string
      * @return null|UXMenu
@@ -416,5 +425,18 @@ class MainForm extends AbstractIdeForm
                 $this->contentSplit->items->remove($this->bottom);
             }
         });
+    }
+
+    /**
+     * @return IdeConfiguration
+     */
+    protected function ideConfig()
+    {
+        $name = str::replace(get_class($this), "\\", "/");
+
+        $config = Ide::get()->getUserConfig("config/$name");
+        $config->setAutoSave(true);
+
+        return $config;
     }
 }

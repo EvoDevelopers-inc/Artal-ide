@@ -4,6 +4,7 @@ namespace ide\misc;
 use framework\core\Module;
 use ide\editors\AbstractEditor;
 use ide\Ide;
+use ide\Logger;
 use ide\ui\elements\DNButton;
 use php\gui\UXMenuItem;
 use php\gui\UXSeparator;

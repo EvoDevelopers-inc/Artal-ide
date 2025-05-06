@@ -22,6 +22,7 @@ class DNTextField extends UXTextField
      */
     public static function applyIDETheme(UXTextField $field) {
         /** @var IDETheme $currentTheme */
+        $field->classes->add('dn-textfield');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($field, $currentTheme->getCSSStyle()->getTextInputCSS());
     }

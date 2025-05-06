@@ -13,7 +13,7 @@ class DarkTheme extends IDETheme {
      * @inheritDoc
      */
     public function getName(): string {
-        return "Dark";
+        return "Deep Dark 2025";
     }
 
     /**

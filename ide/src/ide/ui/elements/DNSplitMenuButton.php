@@ -25,6 +25,7 @@ class DNSplitMenuButton extends UXSplitMenuButton
      */
     public static function applyIDETheme(UXSplitMenuButton $button) {
         /** @var IDETheme $currentTheme */
+        $button->classes->add('dn-splitmenubutton');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($button, $currentTheme->getCSSStyle()->getButtonCSS());
     }

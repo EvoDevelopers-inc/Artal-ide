@@ -11,26 +11,27 @@ use php\gui\UXImageView;
  */
 class SplashForm extends AbstractIdeForm
 {
+
+    public function setProgress(int $value)
+    {
+        $this->progressBar->value = $value;
+    }
+
+    public function setStatus(string $text)
+    {
+        $this->statusLabel->text = $text;
+    }
+
     protected function init()
     {
         Logger::debug("Init form ...");
 
         $this->centerOnScreen();
 
-        if ($this->_app->isSnapshotVersion()) {
-            $this->image->image = new UXImage("res://.data/img/splash/snapshot.png");
-        }
+      //  if ($this->_app->isSnapshotVersion()) {
+            $this->image->image = new UXImage("res://.data/img/splash/slpash_dark.png");
+      //  }
 
-        Ide::get()->on('start', function () {
-            Ide::accountManager()->on('update', function ($data) {
-                Ide::service()->file()->getImageAsync($data['avatar'], function ($file) {
-                    Ide::get()->setUserConfigValue('splash.avatar', $file);
-                });
-
-                Ide::get()->setUserConfigValue('splash.name', $data['name']);
-            }, __CLASS__);
-            Ide::accountManager()->updateAccount();
-        }, __CLASS__);
 
         $this->waiter();
     }

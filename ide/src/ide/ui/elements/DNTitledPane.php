@@ -26,6 +26,7 @@ class DNTitledPane extends UXTitledPane {
      */
     public static function applyIDETheme(UXTitledPane $pane) {
         /** @var IDETheme $currentTheme */
+        $pane->classes->add('dn-titledpane');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         // FIXME: use different style
         CSSStyle::applyCSSToNode($pane, $currentTheme->getCSSStyle()->getButtonCSS());

@@ -471,7 +471,7 @@ class ProjectConfig
 
         foreach ($behaviours as $class => $behaviour) {
             $behaviour = $project->register($behaviour, false);
-            $behaviour->unserialize($domBehaviour);
+            AbstractProjectBehaviour::unserialize($domBehaviour);
 
             $behaviours[$class] = $behaviour;
         }

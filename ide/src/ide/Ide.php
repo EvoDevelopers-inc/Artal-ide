@@ -1,8 +1,6 @@
 <?php
 namespace ide;
 
-use ide\account\AccountManager;
-use ide\account\ServiceManager;
 use ide\bundle\AbstractBundle;
 use ide\commands\ChangeThemeCommand;
 use ide\editors\AbstractEditor;
@@ -209,7 +207,7 @@ class Ide extends Application
                 Logger::info(str::format("Commands Args = [%s]", str::join((array)$GLOBALS['argv'], ', ')));
 
                 restore_exception_handler();
-
+                Ide::setStatusSplash("Starting IDE ...");    
                 set_exception_handler(function ($e) {
                     static $showError;
 
@@ -285,20 +283,6 @@ class Ide extends Application
                 foreach ($this->afterShow as $handle) {
                     $handle();
                 }
-
-                $this->serviceManager = new ServiceManager();
-
-                $this->serviceManager->on('privateEnable', function () {
-                    $this->accountManager->updateAccount();
-                });
-
-                $this->serviceManager->on('privateDisable', function () {
-                    //Notifications::showAccountUnavailable();
-                });
-
-                $this->serviceManager->updateStatus();
-
-                $this->accountManager = new AccountManager();
 
                 $this->registerAll();
 
@@ -433,15 +417,7 @@ class Ide extends Application
      */
     public function sendError($e, $context = 'global')
     {
-        if (Ide::service()->canPrivate() && Ide::accountManager()->isAuthorized()) {
-            try {
-                Ide::service()->ide()->sendErrorAsync($e, function () {
-
-                });
-            } catch (\Exception $e) {
-                echo "Unable to send error, exception = {$e->getMessage()}\n";
-            }
-        }
+        // todo
     }
 
     public function makeEnvironment()
@@ -879,7 +855,7 @@ class Ide extends Application
         if ($data['menuItem']) {
             /** @var UXMenu $menu */
             $menu = $mainForm->findSubMenu('menu' . Str::upperFirst($command->getCategory()));
-
+           
             if ($menu instanceof UXMenu) {
                 foreach ($data['menuItem'] as $el) {
                     $menu->items->remove($el);
@@ -1023,10 +999,12 @@ class Ide extends Application
 
                 /** @var UXMenu $menu */
                 $menu = $mainForm->findSubMenu('menu' . Str::upperFirst($category));
+                
 
                 if ($menu instanceof UXMenu) {
+                   
                     $items = [];
-
+                       
                     if ($command->withBeforeSeparator()) {
                         /** @var UXMenuItem $last */
                         $last = $menu->items->last();
@@ -1297,7 +1275,7 @@ class Ide extends Application
     public function registerAll()
     {
         $this->cleanup();
-
+        Ide::setStatusSplash("Register extensions ...");   
         $extensions = $this->getInternalList('.dn/extensions');
 
         foreach ($extensions as $extension) {
@@ -1316,6 +1294,8 @@ class Ide extends Application
         }
 
         Logger::info("Register formats");
+        Ide::setStatusSplash("Register formats ...");   
+
         $formats = $this->getInternalList('.dn/formats');
         foreach ($formats as $format) {
             $this->registerFormat(new $format());
@@ -1328,6 +1308,7 @@ class Ide extends Application
         }
 
         Logger::info("Register main Commands");
+        Ide::setStatusSplash("Register main Commands ...");   
         $mainCommands = $this->getInternalList('.dn/mainCommands');
         $commands = [];
         foreach ($mainCommands as $commandClass) {
@@ -1369,7 +1350,8 @@ class Ide extends Application
 
             $this->idle = false;
         });
-
+        Ide::setStatusSplash("Init env ...");   
+        Ide::setProgressSplash(25);
         $ideConfig = $this->getUserConfig('ide');
 
         $defaultProjectDir = File::of(System::getProperty('user.home') . '/DevelNextProjects');
@@ -1459,10 +1441,6 @@ class Ide extends Application
      * @return AccountManager
      * @throws \Exception
      */
-    public static function accountManager()
-    {
-        return Ide::get()->getAccountManager();
-    }
 
     /**
      * @return ServiceManager
@@ -1742,5 +1720,21 @@ class Ide extends Application
     public function getExtensions(): array
     {
         return $this->extensions;
+    }
+
+    public static function setStatusSplash(string $status)
+    {
+        $splash = parent::get()->getSplash();
+        if ($splash !== null) {
+            $splash->setStatus($status);
+        }
+    }
+    
+    public static function setProgressSplash(int $value)
+    {
+        $splash = self::get()->getSplash();
+        if ($splash !== null) {
+            $splash->setProgress($value);
+        }
     }
 }

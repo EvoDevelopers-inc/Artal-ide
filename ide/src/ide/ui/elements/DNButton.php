@@ -11,6 +11,7 @@ use php\gui\UXNode;
 
 class DNButton extends UXButton
 {
+
     /**
      * DNButton constructor.
      * @param string $text
@@ -20,6 +21,7 @@ class DNButton extends UXButton
     public function __construct($text = '', UXNode $graphic = null)
     {
         parent::__construct($text, $graphic);
+    
         DNButton::applyIDETheme($this);
     }
 
@@ -28,6 +30,7 @@ class DNButton extends UXButton
      */
     public static function applyIDETheme(UXButton $button) {
         /** @var IDETheme $currentTheme */
+        $button->classes->add('dn-button');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($button, $currentTheme->getCSSStyle()->getButtonCSS());
     }

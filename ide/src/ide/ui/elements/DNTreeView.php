@@ -23,6 +23,7 @@ class DNTreeView extends UXTreeView {
      */
     public static function applyIDETheme(UXTreeView $tree) {
         /** @var IDETheme $currentTheme */
+        $tree->classes->add('dn-treeview');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($tree, $currentTheme->getCSSStyle()->getTreeViewCSS());
     }

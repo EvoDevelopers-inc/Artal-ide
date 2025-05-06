@@ -2,6 +2,7 @@
 namespace ide\project\behaviours;
 
 use ide\project\AbstractProjectBehaviour;
+use ide\project\Project;
 use ide\utils\FileUtils;
 use php\lib\arr;
 use php\lib\fs;
@@ -12,6 +13,11 @@ use php\lib\fs;
  */
 class RunBuildProjectBehaviour extends AbstractProjectBehaviour
 {
+    public function __construct(Project $project = null)
+    {
+
+    }
+
     /**
      * ...
      */

@@ -10,7 +10,15 @@ class LightCSSStyle extends CSSStyle
     public function getButtonCSS(): array {
         return [
             "-fx-base" => "#f3f3f3",
-            "-fx-text-fill" => "#333333"
+            "-fx-background-color" => "#f3f3f3",
+            "-fx-text-fill" => "#333333",
+            "-fx-border-color" => "#dddddd",
+            "-fx-border-radius" => "4px",
+            "-fx-background-radius" => "4px",
+            "-fx-control-inner-background" => "-fx-base",
+            "-fx-control-inner-background-alt" => "#f7f7f7",
+            "-dn-text-fill" => "#333333",
+            "-fx-cursor" => "hand"
         ];
     }
 
@@ -20,7 +28,14 @@ class LightCSSStyle extends CSSStyle
     public function getMenuBarCSS(): array {
         return [
             "-fx-base" => "#f3f3f3",
-            "-fx-text-fill" => "#333333"
+            "-fx-background-color" => "#f3f3f3",
+            "-fx-border-color" => "#dddddd",
+            "-fx-border-width" => "0 0 1px 0",
+            "-fx-control-inner-background" => "-fx-base",
+            "-fx-control-inner-background-alt" => "#f7f7f7",
+            "-dn-text-fill" => "#333333",
+            "-fx-text-fill" => "-dn-text-fill",
+            "-fx-effect" => "dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1)"
         ];
     }
 
@@ -29,7 +44,9 @@ class LightCSSStyle extends CSSStyle
      */
     public function getLabelCSS(): array {
         return [
-            "-fx-text-fill" => "#333333"
+            "-dn-text-fill" => "#333333",
+            "-fx-text-fill" => "-dn-text-fill",
+            "-fx-font-smoothing-type" => "lcd"
         ];
     }
 
@@ -37,21 +54,39 @@ class LightCSSStyle extends CSSStyle
      * @return array
      */
     public function getBoxPanelCSS(): array {
-        return [];
+        return [
+            "-fx-background-color" => "#ffffff",
+            "-fx-border-width" => "0",
+            "-fx-effect" => "null"
+        ];
     }
 
     /**
      * @return array
      */
     public function getSeparatorCSS(): array {
-        return [];
+        return [
+            "-fx-base" => "#dddddd",
+            "-fx-background-color" => "#dddddd"
+        ];
     }
 
     /**
      * @return array
      */
     public function getTextInputCSS(): array {
-        return [];
+        return [
+            "-fx-control-inner-background" => "#ffffff",
+            "-fx-base" => "#f3f3f3",
+            "-fx-border-color" => "#dddddd",
+            "-fx-border-radius" => "4px",
+            "-fx-background-radius" => "4px",
+            "-dn-text-fill" => "#333333",
+            "-fx-text-fill" => "-dn-text-fill",
+            "-fx-prompt-text-fill" => "#a0a0a0",
+            "-fx-highlight-fill" => "#0093ff",
+            "-fx-highlight-text-fill" => "#ffffff"
+        ];
     }
 
     /**
@@ -59,8 +94,18 @@ class LightCSSStyle extends CSSStyle
      */
     public function getListViewCSS(): array {
         return [
-            "-dn-base" => "#f3f3f3",
-            "-dn-selected-background-color" => "derive(-dn-base, -15%)",
+            "-fx-base" => "#ffffff",
+            "-fx-control-inner-background" => "#fcfcfc",
+            "-fx-control-inner-background-alt" => "#f7f7f7",
+            "-fx-background-color" => "#ffffff",
+            "-dn-selected-background-color" => "#cce6fe",
+            "-fx-selection-bar" => "#cce6fe",
+            "-fx-selection-bar-non-focused" => "#e5e5e5",
+            "-dn-text-fill" => "#333333",
+            "-fx-text-fill" => "-dn-text-fill",
+            "-fx-border-color" => "#dddddd",
+            "-fx-border-radius" => "4px",
+            "-fx-background-radius" => "4px"
         ];
     }
 
@@ -68,7 +113,19 @@ class LightCSSStyle extends CSSStyle
      * @return array
      */
     public function getTreeViewCSS(): array {
-        return [];
+        return [
+            "-fx-base" => "#ffffff",
+            "-fx-control-inner-background" => "#fcfcfc",
+            "-fx-control-inner-background-alt" => "#f7f7f7",
+            "-fx-background-color" => "#fcfcfc",
+            "-fx-selection-bar" => "#cce6fe",
+            "-fx-selection-bar-non-focused" => "#e5e5e5",
+            "-dn-text-fill" => "#333333",
+            "-fx-text-fill" => "-dn-text-fill",
+            "-fx-border-color" => "#dddddd",
+            "-fx-border-radius" => "4px",
+            "-fx-background-radius" => "4px"
+        ];
     }
 
     /**
@@ -78,9 +135,12 @@ class LightCSSStyle extends CSSStyle
         return [
             "-dn-base" => "#F4F4F4",
             "-dn-text-fill" => "#333333",
-            "-dn-tab-header-area-background" => "derive(-dn-base, 30%)",
-            "-dn-tab-content-area-background" => "-dn-base",
-            "-dn-tab-header-background" => "-dn-base"
+            "-fx-text-fill" => "-dn-text-fill",
+            "-dn-tab-header-area-background" => "#e8e8e8",
+            "-dn-tab-content-area-background" => "#ffffff",
+            "-dn-tab-header-background" => "#f4f4f4",
+            "-fx-background-color" => "#ffffff",
+            "-fx-tab-border-color" => "#dddddd"
         ];
     }
 
@@ -89,7 +149,9 @@ class LightCSSStyle extends CSSStyle
      */
     public function getSplitPaneCSS(): array {
         return [
-            "-dn-base" => "#f3f3f3"
+            "-dn-base" => "#f3f3f3",
+            "-fx-background-color" => "transparent",
+            "-fx-divider-color" => "#dddddd"
         ];
     }
 
@@ -98,7 +160,9 @@ class LightCSSStyle extends CSSStyle
      */
     public function getScrollPaneCSS(): array {
         return [
-            "-dn-base" => "#f3f3f3"
+            "-dn-base" => "#ffffff",
+            "-fx-background-color" => "#ffffff",
+            "-fx-border-color" => "transparent"
         ];
     }
 
@@ -107,10 +171,12 @@ class LightCSSStyle extends CSSStyle
      */
     public function getFlowPaneCSS(): array {
         return [
-            "-dn-base" => "#f3f3f3",
-            "-fx-border-color" => "derive(-dn-base, 30%)",
+            "-dn-base" => "#ffffff",
+            "-fx-background-color" => "#ffffff",
+            "-fx-border-color" => "#dddddd",
             "-fx-border-style" => "solid",
-            "-fx-border-width" => "1px"
+            "-fx-border-width" => "1px",
+            "-fx-border-radius" => "4px"
         ];
     }
 }

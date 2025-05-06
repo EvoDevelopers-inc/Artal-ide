@@ -1,24 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.geometry.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import org.develnext.jphp.ext.javafx.classes.data.*?>
+<?import org.develnext.jphp.ext.javafx.support.*?>
+<?import org.develnext.jphp.ext.javafx.support.control.*?>
+<?import org.develnext.jphp.ext.game.support.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView id="image" fitHeight="430.0" fitWidth="698.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="/.data/img/splash/release.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="840" prefHeight="440">
+  <children>
+
+    <!-- Фоновое изображение -->
+    <ImageViewEx id="image" layoutX="0" layoutY="0"
+                 width="840" height="440"
+                 autoSize="false" centered="true" stretch="true"
+                 mosaic="false" proportional="false" />
+    <Data id="data-image" enabled="1" visible="1" cursor="DEFAULT"/>
+
+    <!-- Полупрозрачная затемнёнка -->
+    <Rectangle width="840" height="440">
+      <fill>
+        <LinearGradient startX="0" startY="0" endX="0" endY="1" proportional="true">
+          <stops>
+            <Stop offset="0.0" color="#000000aa"/>
+            <Stop offset="1.0" color="#00000044"/>
+          </stops>
+        </LinearGradient>
+      </fill>
+    </Rectangle>
+
+    <!-- Верхний блок с текстами -->
+    <VBox layoutX="0" layoutY="30" prefWidth="840" spacing="10" alignment="CENTER">
+      <children>
+
+        <!-- Статус -->
+        <LabelEx id="statusLabel" text="Launching..." styleClass="splash-label"
+                 textFill="#FFFFFF" textAlignment="CENTER">
+          <font>
+            <Font name="Segoe UI" size="14"/>
+          </font>
+        </LabelEx>
+        <Data id="data-statusLabel" enabled="1" visible="1" cursor="DEFAULT"/>
+
+        <!-- Прогресс-бар -->
+        <ProgressBar id="progressBar" prefWidth="300" prefHeight="8" progress="-1"
+                     style="-fx-accent: #00FFFF; -fx-background-radius: 5; -fx-border-radius: 5;"/>
+        <Data id="data-progressBar" enabled="1" visible="1" cursor="DEFAULT"/>
+
+      </children>
+    </VBox>
+
+    <!-- Копирайт в самом низу -->
+    <LabelEx id="copyrightLabel"
+             layoutX="0" layoutY="420" prefWidth="840" textAlignment="CENTER"
+             text="© 2025 JPHP Development Team" textFill="#888888">
+      <font>
+        <Font name="System Regular" size="11"/>
+      </font>
+    </LabelEx>
+    <Data id="data-copyrightLabel" enabled="1" visible="1"/>
+
+  </children>
 </AnchorPane>

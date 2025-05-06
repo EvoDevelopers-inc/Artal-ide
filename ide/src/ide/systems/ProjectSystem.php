@@ -3,6 +3,7 @@ namespace ide\systems;
 
 use ide\forms\MessageBoxForm;
 use ide\forms\OpenProjectForm;
+use ide\forms\ProjectLoadingForm;
 use ide\Ide;
 use ide\Logger;
 use ide\project\AbstractProjectTemplate;
@@ -12,6 +13,7 @@ use ide\project\ProjectConsoleOutput;
 use ide\project\ProjectImporter;
 use ide\ui\Notifications;
 use ide\utils\FileUtils;
+use php\gui\UXApplication;
 use php\gui\UXDialog;
 use php\gui\UXDirectoryChooser;
 use php\io\File;
@@ -22,6 +24,7 @@ use php\lang\Thread;
 use php\lib\fs;
 use php\lib\Items;
 use php\lib\Str;
+use php\time\Time;
 use script\TimerScript;
 use timer\AccurateTimer;
 use function var_dump;
@@ -245,10 +248,10 @@ class ProjectSystem
     static function open($fileName, $showDialogAlreadyOpened = true, $showMigrationDialog = true, $showWindowKind = false)
     {
         Logger::info("Start opening project: $fileName");
+        Ide::get()->getMainForm()->showPreloader('Открытие проекта ...');
 
         try {
-            Ide::get()->getMainForm()->showPreloader('Открытие проекта ...');
-
+            
             $file = File::of($fileName);
 
             try {
@@ -333,8 +336,10 @@ class ProjectSystem
                 if (!FileSystem::getOpened()) {
                     FileSystem::open($project->getMainProjectFile());
                 }
-
+                $startTime = Time::millis();
                 $project->open();
+                $elapsedTime = Time::millis() - $startTime;
+                Logger::info("Функция выполнена за {$elapsedTime} мс");
 
                 Ide::get()->getMainForm()->hidePreloader();
 

@@ -24,6 +24,7 @@ class DNComboBox extends UXComboBox
      */
     public static function applyIDETheme(UXComboBoxBase $box) {
         /** @var IDETheme $currentTheme */
+        $box->classes->add('dn-combobox');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($box, $currentTheme->getCSSStyle()->getButtonCSS());
     }

@@ -22,6 +22,7 @@ class DNListView extends UXListView {
      */
     public static function applyIDETheme(UXListView $list) {
         /** @var IDETheme $currentTheme */
+        $list->classes->add('dn-listview');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($list, $currentTheme->getCSSStyle()->getListViewCSS());
     }

@@ -1631,4 +1631,23 @@ class Project
         $this->trigger('unregisterInspector', $context);
         unset($this->inspectors[str::lower($context)]);
     }
+
+    /**
+     * Возвращает уникальный идентификатор проекта
+     * 
+     * @return string Уникальный UUID проекта
+     */
+    public function getUuid(): string
+    {
+       
+        $uuid = $this->getConfig()->getProperty('uuid');
+        
+        if (!$uuid) {
+            $uuid = str::uuid();
+            $this->getConfig()->setProperty('uuid', $uuid);
+            $this->getConfig()->save();
+        }
+        
+        return $uuid;
+    }
 }

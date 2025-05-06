@@ -23,6 +23,7 @@ class DNSeparator extends UXSeparator
      */
     public static function applyIDETheme(UXSeparator $separator) {
         /** @var IDETheme $currentTheme */
+        $separator->classes->add('dn-separator');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($separator, $currentTheme->getCSSStyle()->getSeparatorCSS());
     }

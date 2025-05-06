@@ -1,6 +1,5 @@
 ide\commands\SettingsShowCommand
 
-ide\commands\MyAccountCommand
 ide\commands\NewProjectCommand
 ide\commands\OpenProjectCommand
 ide\commands\SaveProjectCommand

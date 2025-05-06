@@ -4,3 +4,5 @@ ide\formats\CssCodeFormat
 ide\formats\TextCodeFormat
 ide\formats\PtyFormat
 ide\doc\formats\DocFormat
+
+ide\formats\JPPMPackageFormat

@@ -25,6 +25,7 @@ class DNLabel extends UXLabel
      */
     public static function applyIDETheme(UXLabel $label) {
         /** @var IDETheme $currentTheme */
+        $label->classes->add('dn-label');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($label, $currentTheme->getCSSStyle()->getLabelCSS());
     }

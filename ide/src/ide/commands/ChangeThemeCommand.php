@@ -157,6 +157,6 @@ class ChangeThemeCommand extends AbstractCommand {
             Logger::info('Stylesheet ' . $current . ' applied to ' . $form->getName());
         }
 
-        //$form->addStylesheet($current);
+        $form->addStylesheet($current);
     }
 }

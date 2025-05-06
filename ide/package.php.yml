@@ -65,3 +65,4 @@ app:
   build:
     file-name: develnext-lib
     type: multi-jar
+    bytecode: 'phb'

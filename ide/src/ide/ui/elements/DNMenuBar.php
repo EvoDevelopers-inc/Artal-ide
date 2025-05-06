@@ -23,6 +23,7 @@ class DNMenuBar extends UXMenuBar
      */
     public static function applyIDETheme(UXMenuBar $bar) {
         /** @var IDETheme $currentTheme */
+        $bar->classes->add('dn-menubar');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($bar, $currentTheme->getCSSStyle()->getMenuBarCSS());
     }

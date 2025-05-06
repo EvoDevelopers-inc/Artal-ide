@@ -24,7 +24,7 @@ class DNFlowPane extends UXFlowPane
      */
     public static function applyIDETheme(UXFlowPane $flowPane) {
         DNAnchorPane::applyIDETheme($flowPane);
-
+        $flowPane->classes->add('dn-flowpane');
         /** @var IDETheme $currentTheme */
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($flowPane, $currentTheme->getCSSStyle()->getFlowPaneCSS());

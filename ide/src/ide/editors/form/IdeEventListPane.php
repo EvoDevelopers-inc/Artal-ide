@@ -502,6 +502,7 @@ class IdeEventListPane
                         }
 
                         $item = _(new UXMenuItem($name));
+                        var_dump("NAMEEEEEEEE: $name");
 
                         if ($param === false) {
                             $item->disable = true;

@@ -22,6 +22,7 @@ class DNToggleButton extends UXToggleButton
      */
     public static function applyIDETheme(UXToggleButton $button) {
         /** @var IDETheme $currentTheme */
+        $button->classes->add('dn-togglebutton');
         $currentTheme = ChangeThemeCommand::$instance->getCurrentTheme();
         CSSStyle::applyCSSToNode($button, $currentTheme->getCSSStyle()->getButtonCSS());
     }
