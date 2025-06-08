@@ -19,6 +19,7 @@ use ide\project\control\AbstractProjectControlPane;
 use ide\project\Project;
 use ide\protocol\AbstractProtocolHandler;
 use ide\protocol\handlers\FileOpenProjectProtocolHandler;
+use ide\service\JPPMControl;
 use ide\settings\Settings;
 use ide\systems\Cache;
 use ide\systems\FileSystem;
@@ -180,12 +181,15 @@ class Ide extends Application
      */
     protected $settings;
 
+    public JPPMControl $JPPMControl;
+
     public function __construct($configPath = null)
     {
         parent::__construct($configPath);
 
         $this->OS = IdeSystem::getOs();
         $this->mode = IdeSystem::getMode();
+        $this->JPPMControl = new JPPMControl($this->OS);
 
         $this->library = new IdeLibrary($this);
         $this->toolManager = new IdeToolManager();

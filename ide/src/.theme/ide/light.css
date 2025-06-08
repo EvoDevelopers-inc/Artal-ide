@@ -578,3 +578,6 @@
 .splash-logo {
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 10, 0, 0, 0);
 }
+.modal{
+    -fx-background-color: rgba(255, 255, 255, 0.73);
+}

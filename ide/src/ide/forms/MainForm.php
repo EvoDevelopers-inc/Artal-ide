@@ -1,6 +1,7 @@
 <?php
 namespace ide\forms;
 
+use action\Animation;
 use ide\action\types\UiLaterActionType;
 use ide\commands\ChangeThemeCommand;
 use ide\commands\theme\CSSStyle;
@@ -15,7 +16,9 @@ use ide\ui\elements\DNMenuBar;
 use ide\ui\elements\DNSplitPane;
 use ide\ui\elements\DNTabPane;
 use ide\ui\elements\DNTreeView;
+use ide\ui\UXModal;
 use ide\utils\UiUtils;
+use php\demonck\animated\animations\AnimationProvider;
 use php\gui\UXDndTabPane;
 use php\gui\UXLabel;
 use php\gui\UXMenu;
@@ -53,7 +56,7 @@ use php\lib\str;
  */
 class MainForm extends AbstractIdeForm
 {
-
+    protected UXModal $modal;
 
     /**
      * @var UXMenuBar
@@ -94,6 +97,17 @@ class MainForm extends AbstractIdeForm
         
     }
 
+    public function showModal($node)
+    {
+        $this->modal->showModal($node);
+    }
+
+    public function closeModal($node)
+    {
+
+        $this->modal->hideModal($node);
+    }
+
     
     /**
      * @param $string
@@ -119,6 +133,8 @@ class MainForm extends AbstractIdeForm
 
         Ide::get()->on('start', function () {
             $this->opacity = 1;
+            Ide::get()->JPPMControl->onIDEStart();
+
         });
 
         $mainMenu = $this->mainMenu; // FIX!!!!! see FixSkinMenu
@@ -157,6 +173,8 @@ class MainForm extends AbstractIdeForm
         } else {
             $parent->add($tabPane);
         }
+
+        $this->modal = new UXModal(AnimationProvider::RollOut(), 0.6, 0.6);
 
         $tree = new UXDirectoryTreeView();
         $tree->position = [0, 0];
@@ -237,6 +255,7 @@ class MainForm extends AbstractIdeForm
     {
         DNMenuBar::applyIDETheme($this->mainMenu);
         _($this->mainMenu);
+        $this->add($this->modal);
     }
 
     public function show()

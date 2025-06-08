@@ -142,7 +142,7 @@ function task_fetchMessages($e)
 function task_buildIde(Event $e)
 {
     fs::makeDir("./tools/build/jre/");
-
+    Tasks::runExternal("./ide", "ext-platform-build");
     Tasks::runExternal("./ide", "install");
 
     Tasks::copy("./ide/vendor", "./ide/build/vendor/");
@@ -153,7 +153,7 @@ function task_buildIde(Event $e)
     Tasks::deleteFile("./ide/build/DevelNext.jar");
     Tasks::copy('./dn-launcher/build/DevelNext.jar', './ide/build');
     Tasks::copy('./dn-launcher/build/libs/', './ide/build/libs/');
-    Tasks::runExternal('./ide', 'copySourcesToBuild', $e->args());
+    //Tasks::runExternal('./ide', 'copySourcesToBuild', $e->args());
 
     $os = Package::getOS();
 

@@ -264,3 +264,5 @@
 .dn-list-view > .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: -dn-selected-background-color;
 }
+
+
