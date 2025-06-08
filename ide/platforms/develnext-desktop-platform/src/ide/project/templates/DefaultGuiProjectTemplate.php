@@ -9,7 +9,6 @@ use ide\project\behaviours\BundleProjectBehaviour;
 use ide\project\behaviours\JavaPlatformBehaviour;
 use ide\project\behaviours\PhpProjectBehaviour;
 use ide\project\behaviours\RunBuildProjectBehaviour;
-use ide\project\behaviours\ShareProjectBehaviour;
 use ide\project\Project;
 use ide\project\supports\JPPMProjectSupport;
 use ide\systems\FileSystem;
@@ -71,8 +70,6 @@ class DefaultGuiProjectTemplate extends AbstractProjectTemplate
         if (!$project->hasBehaviour(RunBuildProjectBehaviour::class)) {
             $project->register(new RunBuildProjectBehaviour(), false);
         }
-
-
 
         if (!$project->hasBehaviour(BackupProjectBehaviour::class)) {
             $project->register(new BackupProjectBehaviour(), false);
@@ -315,7 +312,6 @@ class DefaultGuiProjectTemplate extends AbstractProjectTemplate
         $project->register(new JavaPlatformBehaviour());
 
         $project->register(new RunBuildProjectBehaviour());
-        $project->register(new ShareProjectBehaviour());
         $project->register(new BackupProjectBehaviour());
 
         $project->setIgnoreRules([

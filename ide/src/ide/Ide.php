@@ -24,7 +24,6 @@ use ide\systems\Cache;
 use ide\systems\FileSystem;
 use ide\systems\IdeSystem;
 use ide\systems\ProjectSystem;
-use ide\systems\SplashTipSystem;
 use ide\tool\IdeToolManager;
 use ide\ui\elements\DNSeparator;
 use ide\ui\LazyLoadingImage;
@@ -278,6 +277,7 @@ class Ide extends Application
                     Ide::get()->setSplashFormClass(null);
             },
             function () {
+
                 $this->setOpenedProject(null);
 
                 foreach ($this->afterShow as $handle) {
@@ -307,7 +307,6 @@ class Ide extends Application
                 $timer->start();
 
                 $this->trigger('start', []);
-
             }
         );
     }
@@ -1295,7 +1294,7 @@ class Ide extends Application
         }
 
         Logger::info("Register formats");
-        Ide::setStatusSplash("Register formats ...");
+        Ide::setStatusSplash("Register formats ...");   
 
         $formats = $this->getInternalList('.dn/formats');
         foreach ($formats as $format) {
@@ -1351,7 +1350,7 @@ class Ide extends Application
 
             $this->idle = false;
         });
-        Ide::setStatusSplash("Init env ...");
+        Ide::setStatusSplash("Init env ...");   
         Ide::setProgressSplash(25);
         $ideConfig = $this->getUserConfig('ide');
 

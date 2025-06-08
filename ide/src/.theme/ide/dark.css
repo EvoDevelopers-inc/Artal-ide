@@ -19,8 +19,6 @@
     -fx-yellow: #FFEB3B;  /* Предупреждение */
     -fx-dark-yellow: #F9A825;
 
-    -fx-font-color: #fff;
-
 
 }
 
@@ -28,7 +26,7 @@
  * Стили меню
  */
  .menu-bar {
-    -fx-background-color:  rgba(20, 20, 20, 0.7);
+    -fx-background-color: transparent;
     -fx-border-color: #333333;
     -fx-border-width: 0 0 1px 0;
     -fx-background-size: cover; /* Другие варианты: contain, auto */
@@ -37,35 +35,45 @@
 }
 
 .menu * {
-    -fx-background-color: rgba(20, 20, 20, 0.7); /* Делаем прозрачным фон элементов внутри */
+    -fx-background-color: transparent; /* Делаем прозрачным фон элементов внутри */
 }
 
 /* Эффект при наведении мыши - затемнение с сохранением фона */
 .menu:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0, 0, 3);
-    -fx-background-color: rgba(20, 20, 22, 0.1); /* Полупрозрачное затемнение */
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 0);
+    -fx-background-color: rgba(20, 20, 20, 0.7); /* Полупрозрачное затемнение */
 }
 
 /* Для отображения выпадающих меню с фоном */
 .context-menu {
-    -fx-background-color: rgba(20, 20, 20, 0.7);/* Полупрозрачный фон для выпадающих меню */
+    -fx-background-color:transparent; /* Полупрозрачный фон для выпадающих меню */
     -fx-background-radius: 4px;
     -fx-border-color: #333333;
     -fx-border-width: 1px;
     -fx-border-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
 
 /* Для пунктов меню при наведении */
 .menu-item:focused {
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0, 0, 3);
+    -fx-background-color: rgba(26, 115, 232, 0.7); /* Полупрозрачный цвет подсветки */
 }
 
 /* Чтобы текст был читаем на любом фоне */
 .menu .label, .menu-item .label {
-    -fx-text-fill: -fx-font-color;
+    -fx-text-fill: white;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0, 0, 1); /* Тень для текста */
 }
 
+.context-menu {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-color: transparent;
+    -fx-border-color: #333333;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
 
 /**
  * Стили кнопок

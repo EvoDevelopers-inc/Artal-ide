@@ -3,6 +3,7 @@ namespace ide\forms;
 
 use ide\forms\mixins\DialogFormMixin;
 use ide\Ide;
+use ide\Logger;
 use ide\ui\elements\DNButton;
 use ide\ui\elements\DNLabel;
 use php\gui\layout\UXHBox;
@@ -57,6 +58,8 @@ class MessageBoxForm extends AbstractIdeForm
         $this->buttons = $buttons;
         $this->owner = $owner instanceof UXNode ? $owner->form : ($owner instanceof UXWindow ? $owner : $this->owner);
         $this->iconImage = 'icons/question32.png';
+
+
     }
 
     public function makeWarning()
